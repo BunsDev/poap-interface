@@ -5,6 +5,7 @@
   background: #000000;
   flex-direction: column;
   align-items: center;
+
   h1,
   h2,
   h3,
@@ -12,6 +13,8 @@
   p {
     color: white;
     z-index: 100;
+    opacity: 0;
+    animation: appear 0.35s ease-in-out 1.5s forwards;
   }
 
   h1 {
@@ -68,12 +71,15 @@
 }
 
 .logo {
+  opacity: 0;
   width: 170.1px;
   height: 123px;
   margin: 38px auto;
+  animation: appear 0.35s ease-in-out 1.5s forwards;
 }
 
 .stylized_btn {
+  opacity: 0;
   display: flex;
   cursor: pointer;
   width: 178.64px;
@@ -97,6 +103,7 @@
     color: rgba(255, 255, 255, 0.8);
     line-height: 150%;
   }
+  animation: appear 0.35s ease-in-out 1.5s forwards;
 }
 
 .bg_mobile {
@@ -156,8 +163,34 @@
     h3 {
       width: 90%;
     }
-    h4{
+    h4 {
       width: 80%;
     }
+  }
+}
+
+.ticket_mobile,
+.ticket_desktop {
+  opacity: 0;
+  animation: growRotate 1.5s ease-in-out 0.35s forwards;
+}
+
+@keyframes growRotate {
+  0% {
+    opacity: 0;
+    transform: scale(0.75) rotate(15deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
