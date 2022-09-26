@@ -1,0 +1,35 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "StartTokenIdHelper",
+  "sourceName": "contracts/nftERC721A/mocks/StartTokenIdHelper.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "startTokenId_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "startTokenId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b506040516100db3803806100db83398101604081905261002f91610037565b600055610050565b60006020828403121561004957600080fd5b5051919050565b607d8061005e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063e6798baa14602d575b600080fd5b603560005481565b60405190815260200160405180910390f3fea26469706673582212209ebe0f2dda32c0d4d657e32ca024ca72770a9d2f3cff1552ac2f8f19c032b41164736f6c63430008090033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063e6798baa14602d575b600080fd5b603560005481565b60405190815260200160405180910390f3fea26469706673582212209ebe0f2dda32c0d4d657e32ca024ca72770a9d2f3cff1552ac2f8f19c032b41164736f6c63430008090033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
