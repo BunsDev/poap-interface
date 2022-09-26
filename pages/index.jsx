@@ -27,7 +27,7 @@ export default function Home() {
         console.log('Going to pop window for gas fee');
         let toMintAddress = await signer.getAddress();
         console.log('Minting poap to address: ' + toMintAddress);
-        let deployedtxn = await connectedContract.mintTrutsNFT(toMintAddress);
+        let deployedtxn = await connectedContract.mintTrutsNFT(toMintAddress, { gasPrice: ethers.utils.parseUnits('100', 'gwei'), gasLimit: 1000000 });
 
         console.log('Minning the NFT..');
         await deployedtxn.wait();
@@ -87,7 +87,8 @@ export default function Home() {
 
         connectedContract.on('NewNFTMinted', (toAddress, itemId, tokenURI) => {
           console.log('NewNFTMinted itemId', itemId);
-          setMintedLink(`https://opensea.io/assets/matic/0xDdb8BF987606E3521394f70DA9162868945B7E98/${itemId}`) //set link here
+          let tokenID = itemId - 1;
+          setMintedLink(`https://opensea.io/assets/matic/0xDdb8BF987606E3521394f70DA9162868945B7E98/${tokenID}`) //set link here
 
         })
         console.log('Setup event listener!');
