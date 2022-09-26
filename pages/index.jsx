@@ -37,7 +37,7 @@ export default function Home() {
           `Mined, see transaction: https://polygonscan.com/tx/${deployedtxn.hash
           }`
         );
-        alert(`NFT minted, Kindly wait for Link Pop-up`);
+        alert(`NFT minted, please find your nft in Opensea`);
 
       } else {
         console.log('Ethereum object does not exist..');
