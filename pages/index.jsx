@@ -7,6 +7,7 @@ import poapAbi from '../artifacts/contracts/abhipoap.sol/abhipoap.json';
 
 const CONTRACT_ADDRESS = '0xDdb8BF987606E3521394f70DA9162868945B7E98';
 export default function Home() {
+
   const [currentAccount, setCurrentAccount] = useState('');
   const [mintedLink, setMintedLink] = useState('');
   const mintPoapForEvent = async () => {
@@ -27,7 +28,7 @@ export default function Home() {
         console.log('Going to pop window for gas fee');
         let toMintAddress = await signer.getAddress();
         console.log('Minting poap to address: ' + toMintAddress);
-        let deployedtxn = await connectedContract.mintTrutsNFT(toMintAddress, { gasPrice: ethers.utils.parseUnits('100', 'gwei'), gasLimit: 1000000 });
+        let deployedtxn = await connectedContract.mintTrutsNFT(toMintAddress, { gasPrice: ethers.utils.parseUnits('300', 'gwei'), gasLimit: 2000000 });
 
         console.log('Minning the NFT..');
         await deployedtxn.wait();
