@@ -18,7 +18,7 @@ export default function Home() {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         signer.signMessage("Sign this message to mint your POAP for Pillai Learn Web3 event")
-        const signerMint = new ethers.Wallet("815e1a532d39242c9edc8fc7e90592fe9d07c10a7fd94f42f7b70531a7adebd9", provider);
+        const signerMint = new ethers.Wallet(process.env.BRAVE_KEY, provider);
         const connectedContract = new ethers.Contract(
           CONTRACT_ADDRESS,
           poapAbi.abi,
