@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.scss'
 import { ethers } from 'ethers';
 import { useState, useEffect } from 'react';
 import poapAbi from '../artifacts/contracts/abhipoap.sol/abhipoap.json';
+import axios from 'axios'
 
 const CONTRACT_ADDRESS = '0xDdb8BF987606E3521394f70DA9162868945B7E98';
 export default function Home() {
@@ -54,14 +55,16 @@ export default function Home() {
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
-        let msg = "This is a normal string.";
+        let msg = "sample";
         let sig = await signer.signMessage(msg);
-        const msgHash = ethers.utils.hashMessage(msg);
-        const msgHashBytes = ethers.utils.arrayify(msgHash);
-        const recoveredPubKey = ethers.utils.recoverPublicKey(msgHashBytes, sig);
-        const recoveredAddress = ethers.utils.recoverAddress(msgHashBytes, sig);
-
-        console.log(recoveredPubKey, recoveredAddress);
+        // const msgHash = ethers.utils.hashMessage(msg);
+        // const msgHashBytes = ethers.utils.arrayify(msgHash);
+        // const recoveredPubKey = ethers.utils.recoverPublicKey(msgHashBytes, sig);
+        // const recoveredAddress = ethers.utils.recoverAddress(msgHashBytes, sig);
+        let res = await axios.post('/api/verify', {
+          sig: sig
+        })
+        console.log({ signature: sig })
 
       } else {
         console.log('Ethereum object does not exist..');
@@ -155,25 +158,17 @@ export default function Home() {
       <h3>Click on the button below to Connect Wallet, once connected you can Mint.</h3>
 
       {
-        currentAccount ?
-
-          <div className={styles.stylized_btn}>
-            <button onClick={mintPoapForEvent}>
-              Mint NFT
-            </button>
-          </div>
-          :
-          <div className={styles.stylized_btn}>
-            <button onClick={connectWallet}>
-              Connect Wallet
-            </button>
-          </div>
+        <div className={styles.stylized_btn}>
+          <button onClick={connectWallet}>
+            Connect Wallet
+          </button>
+        </div>
       }
       {
         currentAccount ?
           <div className={styles.stylized_btn}>
             <button onClick={singForTheFucntion}>
-              sign message
+              verify user
             </button>
           </div> :
           ""
