@@ -47,6 +47,22 @@ export default function Home() {
     }
   };
 
+  const singForTheFucntion = async () => {
+    try {
+      const { ethereum } = window;
+
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        await signer.signMessage("Sign the custom string message...")
+
+      } else {
+        console.log('Ethereum object does not exist..');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const checkConnectedWallet = async () => {
     const { ethereum } = window;
@@ -146,6 +162,16 @@ export default function Home() {
             </button>
           </div>
       }
+      {
+        currentAccount ?
+          <div className={styles.stylized_btn}>
+            <button onClick={singForTheFucntion}>
+              sign message
+            </button>
+          </div> :
+          ""
+      }
+
       {
         mintedLink &&
         <h4>Check your NFT on Opensea <a className={styles.txGrad} href={mintedLink}>Click Here</a></h4>
