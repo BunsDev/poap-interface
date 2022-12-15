@@ -54,14 +54,14 @@ export default function Home() {
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
-        const signature = await signer.signMessage("Sign the custom string message...")
-        // For Solidity, we need the expanded-format of a signature
-        let sig = ethers.utils.splitSignature(signature);
+        let msg = "This is a normal string.";
+        let sig = await signer.signMessage(msg);
+        const msgHash = ethers.utils.hashMessage(msg);
+        const msgHashBytes = ethers.utils.arrayify(msgHash);
+        const recoveredPubKey = ethers.utils.recoverPublicKey(msgHashBytes, sig);
+        const recoveredAddress = ethers.utils.recoverAddress(msgHashBytes, sig);
 
-        // Call the verifyString function
-        let recovered = await contract.verifyString(message, sig.v, sig.r, sig.s);
-
-        console.log(recovered);
+        console.log(recoveredPubKey, recoveredAddress);
 
       } else {
         console.log('Ethereum object does not exist..');
